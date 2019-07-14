@@ -17,7 +17,6 @@ app.get('/', (req, res) => {
       </body>
     </html>
   `;
-  console.log(html);
   res.send(html);
 });
 
