@@ -1,6 +1,6 @@
 ### Getting started
 
 ```sh
-yarn
-yarn run dev
+npm install
+npm run dev
 ```
