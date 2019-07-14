@@ -8,12 +8,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
-    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\"",
-    "dev:build-server": "webpack --config webpack.server.js --watch",
     "dev:build-client": "webpack --config webpack.client.js --watch",
+    "dev:build-server": "webpack --config webpack.server.js --watch",
+    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\"",
     "sort": "sort-package-json"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "dependencies": {
+    "@commitlint/cli": "8.0.0",
+    "@commitlint/config-conventional": "8.0.0",
     "axios": "0.16.2",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
@@ -27,9 +34,12 @@
     "concurrently": "3.5.0",
     "express": "4.15.4",
     "express-http-proxy": "1.0.6",
+    "husky": "3.0.0",
     "lodash": "4.17.4",
     "nodemon": "1.12.0",
     "npm-run-all": "4.1.1",
+    "prettier": "1.18.2",
+    "pretty-quick": "1.11.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-helmet": "5.2.0",
