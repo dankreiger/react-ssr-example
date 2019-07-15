@@ -3,7 +3,7 @@ import { arrayOf, func, number, shape, string } from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const UsersList = ({ fetchUsers, users }) => {
+const UsersListPage = ({ fetchUsers, users }) => {
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
@@ -20,7 +20,7 @@ const UsersList = ({ fetchUsers, users }) => {
   );
 };
 
-UsersList.propTypes = {
+UsersListPage.propTypes = {
   fetchUsers: func.isRequired,
   users: arrayOf(
     shape({
@@ -30,7 +30,7 @@ UsersList.propTypes = {
   ),
 };
 
-UsersList.defaultProps = {
+UsersListPage.defaultProps = {
   users: [],
 };
 
@@ -42,8 +42,10 @@ function loadData(store) {
   return store.dispatch(actions.fetchUsers());
 }
 
-export { loadData };
-export default connect(
-  mapStateToProps,
-  actions,
-)(UsersList);
+export default {
+  loadData,
+  component: connect(
+    mapStateToProps,
+    actions,
+  )(UsersListPage),
+};

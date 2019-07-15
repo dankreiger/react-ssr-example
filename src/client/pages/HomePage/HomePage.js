@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
-      <div>I am the home component woof</div>
+      <div>I am the HomePage component woof</div>
       <button type="button" onClick={() => console.log('pressed')}>
         Press me
       </button>
@@ -11,4 +11,6 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default {
+  component: HomePage,
+};

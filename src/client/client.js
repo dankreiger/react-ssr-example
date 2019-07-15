@@ -26,7 +26,11 @@ const composedEnhancers = compose(
   ...enhancers,
 );
 
-const store = createStore(reducers, {}, composedEnhancers);
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE || {},
+  composedEnhancers,
+);
 
 ReactDOM.hydrate(
   <Provider store={store}>
