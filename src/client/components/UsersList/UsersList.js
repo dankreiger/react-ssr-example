@@ -38,6 +38,11 @@ const mapStateToProps = state => ({
   users: state.users,
 });
 
+function loadData() {
+  console.log('I want to load some data');
+}
+
+export { loadData };
 export default connect(
   mapStateToProps,
   actions,
