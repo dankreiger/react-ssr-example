@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { UsersListPageProps } from './UsersListPage.types';
 import { UsersReducerState } from '../../reducers/users.reducer.types';
+import { Store } from 'redux';
 
 const UsersListPage = ({ fetchUsers, users }: UsersListPageProps) => {
     useEffect(() => {
