@@ -9,7 +9,7 @@ import { Store } from 'redux';
 const app: express.Application = express();
 
 app.use(express.static('public'));
-app.get('*', (req, res) => {
+app.get('*', (req, res): void => {
     const store: Store = createStore();
 
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
