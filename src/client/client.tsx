@@ -13,30 +13,26 @@ import reducers from './reducers';
 const enhancers = [];
 /* eslint-disable no-underscore-dangle */
 if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
+    const devToolsExtension = (window as any).__REDUX_DEVTOOLS_EXTENSION__;
 
-  if (typeof devToolsExtension === 'function') {
-    enhancers.push(devToolsExtension());
-  }
+    if (typeof devToolsExtension === 'function') {
+        enhancers.push(devToolsExtension());
+    }
 }
 /* eslint-enable */
 
 const composedEnhancers = compose(
-  applyMiddleware(thunk),
-  ...enhancers,
+    applyMiddleware(thunk),
+    ...enhancers,
 );
 
-const store = createStore(
-  reducers,
-  window.INITIAL_STATE || {},
-  composedEnhancers,
-);
+const store = createStore(reducers, (window as any).INITIAL_STATE || {}, composedEnhancers);
 
 ReactDOM.hydrate(
-  <Provider store={store}>
-    <BrowserRouter>
-      <div>{renderRoutes(Routes)}</div>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root'),
+    <Provider store={store}>
+        <BrowserRouter>
+            <div>{renderRoutes(Routes)}</div>
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('root') as HTMLElement,
 );
