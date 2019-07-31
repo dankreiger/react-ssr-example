@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { renderRoutes } from 'react-router-config';
 
@@ -15,10 +16,13 @@ export default (req, store, context) => {
       </StaticRouter>
     </Provider>,
   );
+  const helmet = Helmet.renderStatic();
   return `
     <html>
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      ${helmet.title.toString()}
+      ${helmet.meta.toString()}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       </head>
       <body>
         <div id="root">${content}</div>
