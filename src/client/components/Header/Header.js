@@ -45,7 +45,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Header);
+export default connect(mapStateToProps, null)(Header);

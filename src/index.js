@@ -2,11 +2,15 @@ import 'babel-polyfill';
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
 import proxy from 'express-http-proxy';
+import compression from 'compression';
+
 import Routes from './client/Routes';
 import renderer from './helpers/renderer';
 import createStore from './helpers/createStore';
 
 const app = express();
+
+app.use(compression());
 
 app.use(
   '/api',
@@ -23,10 +27,10 @@ app.get('*', (req, res) => {
   const store = createStore(req);
 
   const promises = matchRoutes(Routes, req.path)
-    .map(({ route }) => {
-      return route.loadData ? route.loadData(store) : null;
-    })
-    .map(promise => {
+    .map(({ route }) =>
+      route.loadData ? route.loadData(store) : null,
+    )
+    .map((promise) => {
       let resolvedPromise;
       if (promise) {
         /* eslint-disable no-unused-vars */
@@ -47,7 +51,7 @@ app.get('*', (req, res) => {
     if (context.notFound) {
       res.status(404);
     }
-    res.send(content);
+    return res.send(content);
   });
 });
 

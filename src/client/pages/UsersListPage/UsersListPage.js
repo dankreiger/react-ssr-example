@@ -9,17 +9,15 @@ const UsersListPage = ({ fetchUsers, users }) => {
     fetchUsers();
   }, [fetchUsers]);
 
-  const renderUsers = () => {
-    return users.map(user => <li key={user.id}>{user.name}</li>);
-  };
-  const head = () => {
-    return (
-      <Helmet>
-        <title>{`${users.length} Users loaded`}</title>
-        <meta property="og:title" content="Users App" />
-      </Helmet>
-    );
-  };
+  const renderUsers = () =>
+    users.map((user) => <li key={user.id}>{user.name}</li>);
+
+  const head = () => (
+    <Helmet>
+      <title>{`${users.length} Users loaded`}</title>
+      <meta property="og:title" content="Users App" />
+    </Helmet>
+  );
 
   return (
     <div>
@@ -44,7 +42,7 @@ UsersListPage.defaultProps = {
   users: [],
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   users: state.users,
 });
 
@@ -54,8 +52,5 @@ function loadData(store) {
 
 export default {
   loadData,
-  component: connect(
-    mapStateToProps,
-    actions,
-  )(UsersListPage),
+  component: connect(mapStateToProps, actions)(UsersListPage),
 };

@@ -10,9 +10,8 @@ const AdminsListPage = ({ admins, fetchAdmins }) => {
     fetchAdmins();
   }, [fetchAdmins]);
 
-  const renderAdmins = () => {
-    return admins.map(admin => <li key={admin.id}>{admin.name}</li>);
-  };
+  const renderAdmins = () =>
+    admins.map((admin) => <li key={admin.id}>{admin.name}</li>);
 
   return (
     <div>
@@ -41,9 +40,8 @@ function mapStateToProps({ admins }) {
 }
 
 export default {
-  component: connect(
-    mapStateToProps,
-    { fetchAdmins: actions.fetchAdmins },
-  )(requireAuth(AdminsListPage)),
+  component: connect(mapStateToProps, {
+    fetchAdmins: actions.fetchAdmins,
+  })(requireAuth(AdminsListPage)),
   loadData: ({ dispatch }) => dispatch(actions.fetchAdmins()),
 };

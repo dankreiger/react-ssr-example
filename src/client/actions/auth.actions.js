@@ -1,6 +1,5 @@
 import { FETCH_CURRENT_USER } from '../constants';
 
-/* eslint-disable import/prefer-default-export */
 export const fetchCurrentUser = () => async (
   dispatch,
   getState,
@@ -13,4 +12,3 @@ export const fetchCurrentUser = () => async (
     payload: res,
   });
 };
-/* eslint-enable */
